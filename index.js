@@ -20,7 +20,7 @@ const feed=require("./Routes/feed");
 const app=express();
 
 const sec = process.env.secret_key;
-
+app.use(cors());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
