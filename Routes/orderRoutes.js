@@ -9,7 +9,7 @@ const sec = process.env.secret_key;
 
 function validateUser(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("/register");
+    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register.html");
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {

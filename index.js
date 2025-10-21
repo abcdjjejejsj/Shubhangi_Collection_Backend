@@ -4,6 +4,7 @@ const express=require("express");
 const path=require("path");
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
+const cors=require("cors");
 
 const route=require("./Routes/userRoutes");
 const product_route=require("./Routes/productRoute");
@@ -31,7 +32,7 @@ app.use("/api/loadData", loadDataRoute);
 
 function validateUser(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("/register");
+    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register");
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {
@@ -54,7 +55,7 @@ function validateUser(req, res, next) {
 
 function validateAdmin(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("/register");
+    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register");
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {
@@ -75,14 +76,14 @@ function validateAdmin(req, res, next) {
             next();
         }else{
             // res.send("access forbidden !");
-            res.redirect("/register");
+            res.redirect("https://shubhangi-collection.vercel.app/register");
         }
     });
 }
 
 function validateDeliveryBoy(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("/register");
+    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register");
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {
@@ -103,7 +104,7 @@ function validateDeliveryBoy(req, res, next) {
             next();
         }else{
             // res.send("access forbidden !");
-            res.redirect("/register");
+            res.redirect("https://shubhangi-collection.vercel.app/register");
         }
     });
 }
@@ -113,32 +114,39 @@ app.get("/heartbit",(req,res)=>{
 })
 
 app.get("/admin.html",validateAdmin,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `admin.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `admin.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/admin.html");
     // res.send("admin page");
 })
 
 app.get("/order.html",validateUser,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `order.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `order.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/order.html");
 })
 
 app.get("/cart.html",validateUser,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `cart.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `cart.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/cart.html");
 })
 
 app.get("/delivery.html",validateUser,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `delivery.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `delivery.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/delivery.html");
 })
 
 app.get("/wishlist.html",validateUser,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `wishlist.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `wishlist.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/wishlist.html");
 })
 
 app.get("/profile.html",validateUser,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `profile.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `profile.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/profile.html");
 })
 
 app.get("/ddelivery.html",validateDeliveryBoy,(req,res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Collection', `ddelivery.html`));
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `ddelivery.html`));
+    res.redirect("https://shubhangi-collection.vercel.app/ddelivery.html");
 })
 
 app.use(express.static(path.join(__dirname, '..','Collection')));
@@ -149,7 +157,7 @@ app.get("/validateUser",validateUser,(req,res)=>{
 })
 
 app.get("/admin",(req,res)=>{
-    res.redirect("/admin.html");
+    res.redirect("https://shubhangi-collection.vercel.app/admin.html");
 })
 
 
@@ -181,24 +189,26 @@ app.get('/:page', (req, res) => {
     console.log("hello world");
     if(req.params.page=="order")
     {
-        res.redirect("/order.html");
+        res.redirect("https://shubhangi-collection-backend.onrender.com/order.html");
     }else if(req.params.page=="cart")
     {
-        res.redirect("/cart.html");
+        res.redirect("https://shubhangi-collection-backend.onrender.com/cart.html");
     }else if(req.params.page=="wishlist")
     {
-        res.redirect("/wishlist.html");
+        res.redirect("https://shubhangi-collection-backend.onrender.com/wishlist.html");
     }else if(req.params.page=="delivery")
     {
-        res.redirect("/delivery.html");
+        res.redirect("https://shubhangi-collection-backend.onrender.com/delivery.html");
     }else if(req.params.page=="profile")
     {
-        res.redirect("/profile.html");
+        res.redirect("https://shubhangi-collection-backend.onrender.com/profile.html");
     }else if(req.params.page=="ddelivery")
     {
-        res.redirect("/ddelivery.html");
+        res.redirect("https://shubhangi-collection-backend.onrender.com/ddelivery.html");
     }else{
-        res.sendFile(path.join(__dirname, '..', 'Collection', `${req.params.page}.html`));
+        // res.sendFile(path.join(__dirname, '..', 'Collection', `${req.params.page}.html`));
+        console.log("You became successfull !");
+        res.redirect(`https://shubhangi-collection.vercel.app/${req.params.page}.html`);
     }
     // console.log("page :: ",req.params.page);
     if (req.params.page.includes('.'))

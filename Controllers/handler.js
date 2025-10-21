@@ -103,7 +103,7 @@ const loginUser = async (req, res) => {
 
 
 const userSpecific = (req, res) => {
-    res.redirect(`/${req.params.pge}`);
+    res.redirect(`https://shubhangi-collection.vercel.app/${req.params.pge}.html`);
 }
 
 
@@ -148,7 +148,7 @@ const logout=(req,res)=>{
         sameSite: "strict"
     });
     // res.send("Logged out successfully");
-    res.redirect("/register");
+    res.redirect("https://shubhangi-collection.vercel.app/register.html");
 }
 
 const contact=async (req,res)=>{
