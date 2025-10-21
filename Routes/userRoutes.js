@@ -17,9 +17,9 @@ function validateUser(req, res, next) {
     jwt.verify(token, sec, (err, user) => {
         if (err) {
             res.clearCookie("token", {
-                httpOnly: true,
-                secure: true,
-                sameSite: "strict"
+               httpOnly: true,
+  secure: true,         // ✅ because both backend & frontend are HTTPS
+  sameSite: "none", 
             });
 
             return res.sendStatus(403);
