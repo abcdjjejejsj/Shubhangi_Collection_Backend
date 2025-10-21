@@ -213,7 +213,8 @@ app.get('/:page', (req, res) => {
     // console.log("page :: ",req.params.page);
     if (req.params.page.includes('.'))
         {
-            return res.status(404).send('Not found');
+            // return res.status(404).send('Not found');
+            res.send("hello dosto");
         } 
 
     
