@@ -24,11 +24,12 @@ const addData = async (req, res) => {
         const token = jwt.sign({ email: body.email }, sec, { expiresIn: "5h" });
 
         // Set HTTP-only cookie
-        res.cookie("token", token, {
-            httpOnly: true,                // prevent JS access
-            secure: false,                  // set true if using HTTPS
-            sameSite: "strict",             // CSRF protection
-        });
+       res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,              // Must be true for HTTPS (Render + Vercel both use HTTPS)
+    sameSite: "none",          // Required for cross-site cookies
+});
+
         res.send("User registered successfully");
         // res.redirect("/collection")
     } catch (err) {
@@ -52,21 +53,23 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ email: body.email}, sec, { expiresIn: "5h" });
 
         // Set HTTP-only cookie
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,                  
-            sameSite: "strict",             
-        });
+       res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,              // Must be true for HTTPS (Render + Vercel both use HTTPS)
+    sameSite: "none",          // Required for cross-site cookies
+});
+
         res.send("Login successfully ");
     }
  else if (body.email == process.env.delivery_email && body.password == process.env.delivery_password) {
     const token = jwt.sign({ email: body.email }, sec, { expiresIn: "5h" });
 
     res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "strict",
-    });
+    httpOnly: true,
+    secure: true,              // Must be true for HTTPS (Render + Vercel both use HTTPS)
+    sameSite: "none",          // Required for cross-site cookies
+});
+
 
     return res.send("Delivery Login successfully");
 }
@@ -82,11 +85,12 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ email: body.email }, sec, { expiresIn: "5h" });
 
         // Set HTTP-only cookie
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,                  
-            sameSite: "strict",             
-        });
+      res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,              // Must be true for HTTPS (Render + Vercel both use HTTPS)
+    sameSite: "none",          // Required for cross-site cookies
+});
+
 
         
 
@@ -234,11 +238,12 @@ const updateUserDetails = async (req, res) => {
         });
 
         // Set new token in cookie
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,  // change to true in production with HTTPS
-            sameSite: "strict",
-        });
+       res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,              // Must be true for HTTPS (Render + Vercel both use HTTPS)
+    sameSite: "none",          // Required for cross-site cookies
+});
+
 
         // ✅ Important: also return token + updated user
         res.json({
