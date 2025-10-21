@@ -21,7 +21,10 @@ const feed=require("./Routes/feed");
 const app=express();
 
 const sec = process.env.secret_key;
-app.use(cors());
+app.use(cors({
+  origin: "https://shubhangi-collection.vercel.app", 
+  credentials: true, 
+}));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
