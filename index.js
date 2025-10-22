@@ -92,7 +92,7 @@ function validateDeliveryBoy(req, res, next) {
             res.clearCookie("token", {
                 httpOnly: true,
                 secure: true,
-                sameSite: "strict"
+                sameSite: "none"
             });
 
             return res.sendStatus(403);
@@ -106,7 +106,7 @@ function validateDeliveryBoy(req, res, next) {
             next();
         }else{
             // res.send("access forbidden !");
-            res.redirect("https://shubhangi-collection.vercel.app/register");
+            res.status(403).redirect("https://shubhangi-collection.vercel.app/register.html");
         }
     });
 }
