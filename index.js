@@ -122,8 +122,32 @@ app.get("/admin.html",validateAdmin,(req,res)=>{
 })
 
 app.get("/verify",validateAdmin,(req,res)=>{
-    // res.sendFile(path.join(__dirname, '..', 'Collection', `admin.html`));
-    res.send({ok:true});
+   const token = req.cookies.token;
+    if (!token) return res.status(403).redirect("https://shubhangi-collection.vercel.app/register.html");
+
+    jwt.verify(token, sec, (err, user) => {
+        if (err) {
+            res.clearCookie("token", {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none"
+            });
+
+            return res.sendStatus(403);
+        };
+        req.user = user; // decoded payload
+        console.log("data from token:", user);
+        console.log("user.email :", user.email);
+        if(user.email==process.env.admin_email)
+        {
+
+            res.send({ok:true});
+        }else{
+            // res.send("access forbidden !");
+             res.send({ok:false});
+        }
+    });
+   
     // res.send("admin page");
 })
 
