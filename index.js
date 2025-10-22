@@ -121,6 +121,13 @@ app.get("/admin.html",validateAdmin,(req,res)=>{
     // res.send("admin page");
 })
 
+app.get("/verify",validateAdmin,(req,res)=>{
+    // res.sendFile(path.join(__dirname, '..', 'Collection', `admin.html`));
+    res.send({ok:true});
+    // res.send("admin page");
+})
+
+
 app.get("/order.html",validateUser,(req,res)=>{
     // res.sendFile(path.join(__dirname, '..', 'Collection', `order.html`));
     res.redirect("https://shubhangi-collection.vercel.app/order.html");
