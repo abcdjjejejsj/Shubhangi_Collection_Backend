@@ -35,14 +35,14 @@ app.use("/api/loadData", loadDataRoute);
 
 function validateUser(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register");
+    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register.html");
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {
             res.clearCookie("token", {
                 httpOnly: true,
                 secure: true,
-                sameSite: "strict"
+                sameSite: "none"
             });
 
             return res.sendStatus(403);
@@ -58,14 +58,14 @@ function validateUser(req, res, next) {
 
 function validateAdmin(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register");
+    if (!token) return res.status(403).redirect("https://shubhangi-collection.vercel.app/register.html");
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {
             res.clearCookie("token", {
                 httpOnly: true,
                 secure: true,
-                sameSite: "strict"
+                sameSite: "none"
             });
 
             return res.sendStatus(403);
@@ -79,15 +79,14 @@ function validateAdmin(req, res, next) {
             next();
         }else{
             // res.send("access forbidden !");
-            res.redirect("https://shubhangi-collection.vercel.app/register");
+            res.status(403).redirect("https://shubhangi-collection.vercel.app/register.html");
         }
     });
 }
 
 function validateDeliveryBoy(req, res, next) {
     const token = req.cookies.token;
-    if (!token) return res.redirect("https://shubhangi-collection.vercel.app/register");
-
+    if (!token) return res.status(403).redirect("https://shubhangi-collection.vercel.app/register.html");
     jwt.verify(token, sec, (err, user) => {
         if (err) {
             res.clearCookie("token", {
