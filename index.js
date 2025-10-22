@@ -123,7 +123,7 @@ app.get("/admin.html",validateAdmin,(req,res)=>{
 
 app.get("/verify",validateAdmin,(req,res)=>{
    const token = req.cookies.token;
-    if (!token) return res.status(403).redirect("https://shubhangi-collection.vercel.app/register.html");
+    if (!token) return res.send({ok:false});
 
     jwt.verify(token, sec, (err, user) => {
         if (err) {
@@ -133,7 +133,7 @@ app.get("/verify",validateAdmin,(req,res)=>{
                 sameSite: "none"
             });
 
-            return res.sendStatus(403);
+            return res.send({ok:false});
         };
         req.user = user; // decoded payload
         console.log("data from token:", user);
