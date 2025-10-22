@@ -152,10 +152,13 @@ app.get("/verify",(req,res)=>{
 })
 
 
-app.get("/order.html",validateUser,(req,res)=>{
-    // res.sendFile(path.join(__dirname, '..', 'Collection', `order.html`));
-    res.redirect("https://shubhangi-collection.vercel.app/order.html");
-})
+// app.get("/order.html",validateUser,(req,res)=>{
+//     // res.sendFile(path.join(__dirname, '..', 'Collection', `order.html`));
+//     res.redirect("https://shubhangi-collection.vercel.app/order.html");
+// })
+
+
+app.get("/verifyUser",validateUser);
 
 app.get("/cart.html",validateUser,(req,res)=>{
     // res.sendFile(path.join(__dirname, '..', 'Collection', `cart.html`));
