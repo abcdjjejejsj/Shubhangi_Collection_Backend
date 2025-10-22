@@ -121,7 +121,7 @@ app.get("/admin.html",validateAdmin,(req,res)=>{
     // res.send("admin page");
 })
 
-app.get("/verify",validateAdmin,(req,res)=>{
+app.get("/verify",(req,res)=>{
    const token = req.cookies.token;
     if (!token) return res.send({ok:false});
 
