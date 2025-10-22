@@ -159,7 +159,7 @@ app.get("/validateUser",validateUser,(req,res)=>{
     res.send("success");
 })
 
-app.get("/admin",(req,res)=>{
+app.get("/admin",validateAdmin,(req,res)=>{
     res.redirect("/admin.html");
 })
 
