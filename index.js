@@ -160,7 +160,7 @@ app.get("/validateUser",validateUser,(req,res)=>{
 })
 
 app.get("/admin",(req,res)=>{
-    res.redirect("https://shubhangi-collection.vercel.app/admin.html");
+    res.redirect("/admin.html");
 })
 
 
