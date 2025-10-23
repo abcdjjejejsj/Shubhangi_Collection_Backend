@@ -149,7 +149,7 @@ const logout=(req,res)=>{
     res.clearCookie("token", {
         httpOnly: true,
         secure: true, 
-        sameSite: "strict"
+        sameSite: "none"
     });
     // res.send("Logged out successfully");
     res.redirect("https://shubhangi-collection.vercel.app/register.html");
@@ -234,7 +234,7 @@ const updateUserDetails = async (req, res) => {
         res.clearCookie("token", {
             httpOnly: true,
             secure: true,
-            sameSite: "strict"
+            sameSite: "none"
         });
 
         // Set new token in cookie
