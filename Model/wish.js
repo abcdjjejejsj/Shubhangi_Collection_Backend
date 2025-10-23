@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
 
 const mongo=process.env.server =='localhost'?process.env.local_mongo:process.env.atlas;
-console.log("mongo : :",mongo);
 mongoose.connect(mongo)
 .then(()=>{console.log("Mongo connected for wish")})
 .catch((err)=>console.log("error of mongo wishlist : ",err))
