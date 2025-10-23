@@ -23,11 +23,14 @@ const app=express();
 const sec = process.env.secret_key;
 app.use(
   cors({
-    origin: "https://shubhangi-collection.vercel.app", // frontend domain
-    credentials: true, // allows cookies to be sent
-    methods: ["GET", "POST", "PUT", "DELETE"], // optional but recommended
+    origin: ["https://shubhangi-collection.vercel.app"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.options('*', cors());
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
