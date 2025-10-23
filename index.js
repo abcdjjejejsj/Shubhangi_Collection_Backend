@@ -161,7 +161,26 @@ app.get("/verify",(req,res)=>{
 // })
 
 
-app.get("/verifyUser",validateUser);
+app.get("/verifyUser", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({ success: false, message: "No token found" });
+  }
+
+  jwt.verify(token, process.env.secret_key, (err, user) => {
+    if (err) {
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      });
+      return res.status(403).json({ success: false, message: "Invalid token" });
+    }
+
+    res.json({ success: true, user });
+  });
+});
+
 
 app.get("/cart.html",validateUser,(req,res)=>{
     // res.sendFile(path.join(__dirname, '..', 'Collection', `cart.html`));
