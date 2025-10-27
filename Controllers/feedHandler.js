@@ -1,10 +1,12 @@
 const feed=require("../Model/feedback");
-
+const user=require("../Model/userModel");
 const addFeed=async (req,res)=>{
     const body=req.body;
     console.log("bb :",body);
     try{
+        const tar=user.findOne({email:req.user.email});
         const target=await feed.create({
+            name:tar.name,
             orderId:body.orderId,
             productName:body.productName,
             rating:body.rating,
