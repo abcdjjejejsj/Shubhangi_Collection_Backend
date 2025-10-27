@@ -4,7 +4,7 @@ const addFeed=async (req,res)=>{
     const body=req.body;
     console.log("bb :",body);
     try{
-        const tar=user.findOne({email:req.user.email});
+        const tar=await user.findOne({email:req.user.email});
         const target=await feed.create({
             name:tar.name,
             orderId:body.orderId,
