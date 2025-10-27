@@ -6,6 +6,10 @@ mongoose.connect(mongo)
 .catch((err)=>console.log("error of mongo feedback : ",err))
 
 const feedbackSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
     orderId:{
         type:String,
         required:true,
