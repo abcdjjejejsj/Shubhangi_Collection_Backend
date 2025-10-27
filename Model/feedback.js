@@ -8,7 +8,7 @@ mongoose.connect(mongo)
 const feedbackSchema=new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,
     },
     orderId:{
         type:String,
