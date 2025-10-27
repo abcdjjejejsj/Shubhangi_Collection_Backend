@@ -246,40 +246,40 @@ app.use("/feedback",feed);
 
 
 
-// app.get('/:page', (req, res) => {
-//     console.log("hello world");
-//     if(req.params.page=="order")
-//     {
-//         res.redirect("https://shubhangi-collection-backend.onrender.com/order.html");
-//     }else if(req.params.page=="cart")
-//     {
-//         res.redirect("https://shubhangi-collection-backend.onrender.com/cart.html");
-//     }else if(req.params.page=="wishlist")
-//     {
-//         res.redirect("https://shubhangi-collection-backend.onrender.com/wishlist.html");
-//     }else if(req.params.page=="delivery")
-//     {
-//         res.redirect("https://shubhangi-collection-backend.onrender.com/delivery.html");
-//     }else if(req.params.page=="profile")
-//     {
-//         res.redirect("https://shubhangi-collection-backend.onrender.com/profile.html");
-//     }else if(req.params.page=="ddelivery")
-//     {
-//         res.redirect("https://shubhangi-collection-backend.onrender.com/ddelivery.html");
-//     }else{
-//         // res.sendFile(path.join(__dirname, '..', 'Collection', `${req.params.page}.html`));
-//         console.log("You became successfull !");
-//         res.redirect(`https://shubhangi-collection.vercel.app/${req.params.page}.html`);
-//     }
-//     // console.log("page :: ",req.params.page);
-//     if (req.params.page.includes('.'))
-//         {
-//             // return res.status(404).send('Not found');
-//             res.send("hello dosto");
-//         } 
+app.get('/:page', (req, res) => {
+    console.log("hello world");
+    if(req.params.page=="order")
+    {
+        res.redirect("/order.html");
+    }else if(req.params.page=="cart")
+    {
+        res.redirect("/cart.html");
+    }else if(req.params.page=="wishlist")
+    {
+        res.redirect("/wishlist.html");
+    }else if(req.params.page=="delivery")
+    {
+        res.redirect("/delivery.html");
+    }else if(req.params.page=="profile")
+    {
+        res.redirect("/profile.html");
+    }else if(req.params.page=="ddelivery")
+    {
+        res.redirect("/ddelivery.html");
+    }else{
+        // res.sendFile(path.join(__dirname, '..', 'Collection', `${req.params.page}.html`));
+        console.log("You became successfull !");
+        res.redirect(`https://shubhangi-collection.vercel.app/${req.params.page}.html`);
+    }
+    // console.log("page :: ",req.params.page);
+    if (req.params.page.includes('.'))
+        {
+            // return res.status(404).send('Not found');
+            res.send("hello dosto");
+        } 
 
     
-// });
+});
 
 app.listen(3400,()=>{
     console.log("Server started at 3400");
