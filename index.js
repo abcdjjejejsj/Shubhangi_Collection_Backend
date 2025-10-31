@@ -16,7 +16,7 @@ const wishRoute=require("./Routes/wishRoute");
 const orderRoutes = require("./Routes/orderRoutes");
 const del=require("./Routes/boy");
 const web=require("./Routes/websiteManager");
-// const feed=require("./Routes/feed");
+const feed=require("./Routes/feed");
 
 const app=express();
 
