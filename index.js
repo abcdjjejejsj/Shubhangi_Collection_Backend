@@ -184,6 +184,32 @@ app.get("/verifyUser", (req, res) => {
   });
 });
 
+app.get("/verifyDel",(req,res)=>{
+  const token = req.cookies.token;
+    if (!token) return res.status(401).json({ success: false, message: "No token found" });
+    jwt.verify(token, sec, (err, user) => {
+        if (err) {
+            res.clearCookie("token", {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none"
+            });
+
+            return res.status(401).json({ success: false, message: "No token found" });
+        };
+        req.user = user; // decoded payload
+        console.log("data from token:", user);
+        console.log("user.email :", user.email);
+        if(user.email==process.env.delivery_email)
+        {
+
+            return res.status(401).json({ success: true, message: "token found" });
+        }else{
+            // res.send("access forbidden !");
+           return res.status(401).json({ success: false, message: "No token found" });
+        }
+    });
+})
 
 app.get("/cart.html",validateUser,(req,res)=>{
     // res.sendFile(path.join(__dirname, '..', 'Collection', `cart.html`));
