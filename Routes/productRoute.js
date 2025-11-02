@@ -54,7 +54,7 @@ router.get("/getTableData",product_handler.sendTableData);
 
 router.post("/status",product_handler.updateStatus);
 
-router.post("/updateData",upload.single("Product_Image"),product_handler.updateData);
+router.post("/updateData",upload.array("Product_Images",5),product_handler.updateData);
 
 router.post("/deleteData",product_handler.deleteData);
 
