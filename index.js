@@ -203,7 +203,7 @@ app.get("/verifyDel",(req,res)=>{
         if(user.email==process.env.delivery_email)
         {
 
-            return res.status(401).json({ success: true, message: "token found" });
+            return res.status(200).json({ success: true, message: "token found" });
         }else{
             // res.send("access forbidden !");
            return res.status(401).json({ success: false, message: "No token found" });
